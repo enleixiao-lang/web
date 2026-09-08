@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人作品集 | Your Name</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入 Google Fonts 提升字體質感 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- 導覽列 -->
+    <nav class="navbar">
+        <div class="logo">YourName<span>.ip</span></div>
+        <ul class="nav-links">
+            <li><a href="#about">關於我</a></li>
+            <li><a href="#skills">核心技能</a></li>
+            <li><a href="#projects">大學四年成果</a></li>
+            <li><a href="#contact">聯絡方式</a></li>
+        </ul>
+    </nav>
+
+    <!-- 主頁 Hero 區塊 -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>嗨，我是 <span class="highlight">你的名字</span></h1>
+            <p>探索、創造與實踐 | [你的專業定位，例如：跨領域前端開發者 / 視覺設計師]</p>
+            <a href="#projects" class="btn">查看作品展覽</a>
+        </div>
+    </header>
+
+    <!-- 關於我 -->
+    <section id="about" class="section">
+        <h2 class="section-title">關於我</h2>
+        <div class="about-container">
+            <div class="avatar">
+                <!-- 替換為你的大頭照圖片路徑 -->
+                <img src="https://via.placeholder.com/200" alt="個人頭像">
+            </div>
+            <div class="about-text">
+                <p>這裡填寫你的個人簡介。介紹你的大學背景、學習歷程與個人 IP 定位。</p>
+                <p>在大學四年中，我致力於將理論與實務結合，透過多個專案累積經驗，並在畢業專題中展現綜合實力。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心技能 -->
+    <section id="skills" class="section bg-light">
+        <h2 class="section-title">核心技能</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>前端開發 / 技術</h3>
+                <p>HTML, CSS, JavaScript, Git, Responsive Design</p>
+            </div>
+            <div class="skill-card">
+                <h3>設計 / 創意</h3>
+                <p>UI/UX Layout, Figma, Adobe Suite, Brand Identity</p>
+            </div>
+            <div class="skill-card">
+                <h3>軟實力 / 管理</h3>
+                <p>團隊溝通、專案管理、問題解決、簡報表達</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 大學四年成果展示 (核心區塊) -->
+    <section id="projects" class="section">
+        <h2 class="section-title">大學四年成果展示</h2>
+        
+        <!-- 分類篩選按鈕 -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">全部作品</button>
+            <button class="filter-btn" data-filter="freshman">大一 / 大二</button>
+            <button class="filter-btn" data-filter="junior">大三歷程</button>
+            <button class="filter-btn" data-filter="senior">畢業專題</button>
+        </div>
+
+        <div class="projects-grid">
+            <!-- 作品 1：畢業專題 -->
+            <div class="project-card senior">
+                <div class="project-tag">畢業專題</div>
+                <img src="https://via.placeholder.com/400x250" alt="畢業專題">
+                <div class="project-info">
+                    <h3>畢業專題項目名稱</h3>
+                    <p>針對特定痛點開發的完整系統或設計，展示大學四年的集大成成果。</p>
+                    <div class="tags">
+                        <span>#畢業專題</span>
+                        <span>#核心亮點</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 作品 2：大三專案 -->
+            <div class="project-card junior">
+                <div class="project-tag">大三研究</div>
+                <img src="https://via.placeholder.com/400x250" alt="專案展覽">
+                <div class="project-info">
+                    <h3>進階領域專案</h3>
+                    <p>深入探討專業領域的實作項目，包含完整的實驗或產品原型設計。</p>
+                    <div class="tags">
+                        <span>#團隊合作</span>
+                        <span>#實務應用</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 作品 3：基礎專案 -->
+            <div class="project-card freshman">
+                <div class="project-tag">大一/大二</div>
+                <img src="https://via.placeholder.com/400x250" alt="基礎實作">
+                <div class="project-info">
+                    <h3>基礎學程成果</h3>
+                    <p>啟蒙階段的作品，展現基礎知識的累積與持續進步的軌跡。</p>
+                    <div class="tags">
+                        <span>#基礎實作</span>
+                        <span>#自主學習</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 聯絡方式 -->
+    <section id="contact" class="section bg-light">
+        <h2 class="section-title">聯絡方式</h2>
+        <p class="contact-sub">歡迎與我交流合作或提供建議！</p>
+        <div class="contact-links">
+            <a href="mailto:your.email@example.com" class="btn">Email 聯絡我</a>
+            <a href="https://github.com/yourusername" target="_blank" class="btn btn-outline">GitHub 頁面</a>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer>
+        <p>&copy; 2026 Your Name. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
