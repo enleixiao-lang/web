@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>萌寵與野性 - 五大動物科普圖鑑</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Noto Sans TC', 'Fredoka', sans-serif;
+            background: linear-gradient(135deg, #fff5eb 0%, #ffe3d8 50%, #fef6e4 100%);
+            min-height: 100vh;
+        }
+
+        @keyframes playfulJiggle {
+            0% { transform: scale(1.06) rotate(0deg); }
+            20% { transform: scale(1.08) rotate(-4deg); }
+            40% { transform: scale(1.08) rotate(4deg); }
+            60% { transform: scale(1.08) rotate(-3deg); }
+            80% { transform: scale(1.08) rotate(2deg); }
+            100% { transform: scale(1.08) rotate(0deg); }
+        }
+
+        /* 當滑鼠懸停時觸發晃動 */
+        .animal-card:hover .card-image {
+            animation: playfulJiggle 0.6s ease-in-out infinite alternate;
+        }
+
+        .animal-card {
+            transition: all 0.35 cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .animal-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px -10px rgba(234, 88, 12, 0.25), 0 10px 12px -6px rgba(0, 0, 0, 0.08);
+        }
+
+        /* 科普按鈕動態變化 */
+        .info-btn {
+            transition: all 0.3s ease;
+        }
+        .animal-card:hover .info-btn {
+            transform: scale(1.1);
+            background-color: #ea580c;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen text-slate-700">
+
+    <header class="py-10 text-center px-4">
+        <div class="inline-block bg-white/80 backdrop-blur-md px-6 py-2 rounded-full shadow-sm mb-3 border border-orange-100">
+            <span class="text-xs sm:text-sm font-semibold text-orange-600 tracking-wider uppercase">
+                <i class="fa-solid fa-book-open mr-1"></i> 動物小百科
+            </span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-bold text-slate-800 tracking-tight mb-3">
+            🐾 探索奇妙動物世界 🦒
+        </h1>
+        <p class="text-base sm:text-lg text-slate-600 max-w-md mx-auto font-medium">
+            將滑鼠移至卡片體驗趣味晃動，點擊圖片閱讀維基百科詳細科普介紹！
+        </p>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex-grow w-full">
+        <div id="animal-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 justify-center">
+            <!-- 5種動物卡片將由 JS 動態生成 -->
+        </div>
+    </main>
+
+    <footer class="py-6 text-center text-slate-500 text-sm border-t border-orange-200/50 bg-white/40 backdrop-blur-sm">
+        <p>© 動物科普圖鑑 · 點擊動物卡片另開新分頁瀏覽維基百科科普頁面</p>
+    </footer>
+
+    <script>
+        const animals = [
+            {
+                id: "cat",
+                name: "貓 (Cat)",
+                latin: "Felis catus",
+                tag: "哺乳類 · 貓科",
+                img: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80",
+                wiki: "https://zh.wikipedia.org/zh-tw/%猫",
+                color: "bg-rose-100 text-rose-800",
+                badge: "靈敏夜視"
+            },
+            {
+                id: "dog",
+                name: "狗 (Dog)",
+                latin: "Canis lupus familiaris",
+                tag: "哺乳類 · 犬科",
+                img: "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=600&q=80",
+                wiki: "https://zh.wikipedia.org/zh-tw/%犬",
+                color: "bg-amber-100 text-amber-800",
+                badge: "嗅覺敏銳"
+            },
+            {
+                id: "duck",
+                name: "鴨 (Duck)",
+                latin: "Anatidae",
+                tag: "鳥綱 · 雁形目",
+                img: "https://images.unsplash.com/photo-1555852095-64e7428df0fa?auto=format&fit=crop&w=600&q=80",
+                wiki: "https://zh.wikipedia.org/zh-tw/%鸭",
+                color: "bg-emerald-100 text-emerald-800",
+                badge: "防水羽毛"
+            },
+            {
+                id: "mouse",
+                name: "老鼠 (Mouse)",
+                latin: "Mus musculus",
+                tag: "哺乳類 · 齧齒目",
+                img: "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?auto=format&fit=crop&w=600&q=80",
+                wiki: "https://zh.wikipedia.org/zh-tw/%E5%B0%8F%E9%A鼠",
+                color: "bg-sky-100 text-sky-800",
+                badge: "適應力強"
+            },
+            {
+                id: "giraffe",
+                name: "長頸鹿 (Giraffe)",
+                latin: "Giraffa camelopardalis",
+                tag: "哺乳類 · 長頸鹿科",
+                img: "https://images.unsplash.com/photo-1547721064-da6cfb341d50?auto=format&fit=crop&w=600&q=80",
+                wiki: "https://zh.wikipedia.org/zh-tw/%E9%95%B7%E9%A0%B8%E9%B9%BF",
+                color: "bg-orange-100 text-orange-800",
+                badge: "陸上最高"
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('animal-grid');
+
+            animals.forEach((animal) => {
+                const card = document.createElement('a');
+                card.href = animal.wiki;
+                card.target = "_blank"; // 在新視窗開啟維基百科科普
+                card.rel = "noopener noreferrer";
+                card.className = "animal-card group bg-white rounded-3xl p-4 shadow-md border border-white/80 flex flex-col justify-between cursor-pointer relative overflow-hidden";
+                card.title = `點擊查看 ${animal.name} 的維基百科科普知識`;
+
+                card.innerHTML = `
+                    <!-- 圖片容器與晃動效果 -->
+                    <div class="relative w-full aspect-square rounded-2xl overflow-hidden bg-slate-100 mb-4">
+                        <img 
+                            src="${animal.img}" 
+                            alt="${animal.name}" 
+                            class="card-image w-full h-full object-cover rounded-2xl"
+                            loading="lazy"
+                            onerror="this.src='https://placehold.co/600x600/ffe3d8/333333?text=${encodeURIComponent(animal.name)}'"
+                        />
+                        <!-- 右下角科普連結按鈕 -->
+                        <div class="info-btn absolute bottom-3 right-3 bg-white/90 backdrop-blur-md text-orange-600 rounded-full w-10 h-10 flex items-center justify-center shadow-md">
+                            <i class="fa-solid fa-graduation-cap text-lg"></i>
+                        </div>
+                        <!-- 左上角特徵 Badge -->
+                        <span class="absolute top-3 left-3 text-xs font-bold px-3 py-1 rounded-full shadow-sm backdrop-blur-md ${animal.color}">
+                            ${animal.badge}
+                        </span>
+                    </div>
+
+                    <!-- 動物科普名稱資訊 -->
+                    <div class="flex flex-col flex-grow justify-between">
+                        <div>
+                            <span class="text-xs font-bold tracking-wider text-orange-500 uppercase">${animal.tag}</span>
+                            <h2 class="text-xl font-bold text-slate-800 group-hover:text-orange-600 transition-colors">
+                                ${animal.name}
+                            </h2>
+                            <p class="text-xs italic text-slate-400 mt-0.5">${animal.latin}</p>
+                        </div>
+                        <div class="mt-4 flex items-center text-xs font-semibold text-slate-500 group-hover:text-orange-600 transition-colors">
+                            <span>閱讀科普百科</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+                        </div>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        });
+    </script>
+</body>
+</html>
